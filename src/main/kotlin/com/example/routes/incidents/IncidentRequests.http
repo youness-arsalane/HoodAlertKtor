@@ -1,0 +1,51 @@
+// HTTP Requests for RenalRoutes.kt
+###
+GET http://localhost:8080/incidents
+Content-Type: application/json
+
+###
+GET http://localhost:8080/incidents/1
+Content-Type: application/json
+
+###
+POST http://localhost:8080/incidents
+Content-Type: application/json
+
+{
+  "communityId": 1,
+  "userId": 1,
+  "title": "",
+  "description": "",
+  "street": "",
+  "houseNumber": "",
+  "zipcode": "",
+  "city": "",
+  "country": "",
+  "latitude": null,
+  "longitude": null
+}
+
+###
+PUT http://localhost:8080/incidents/1
+Content-Type: application/json
+
+{
+  "communityId": 1,
+  "userId": 1,
+  "title": "",
+  "description": "",
+  "street": "",
+  "houseNumber": "",
+  "zipcode": "",
+  "city": "",
+  "country": "",
+  "latitude": null,
+  "longitude": null
+}
+
+###
+DELETE http://localhost:8080/incidents/2
+Content-Type: application/json
+
+
+

@@ -1,0 +1,31 @@
+// HTTP Requests for RenalRoutes.kt
+###
+GET http://localhost:8080/communities
+Content-Type: application/json
+
+###
+GET http://localhost:8080/communities/1
+Content-Type: application/json
+
+###
+POST http://localhost:8080/communities
+Content-Type: application/json
+
+{
+  "name": "Community A"
+}
+
+###
+PUT http://localhost:8080/communities/1
+Content-Type: application/json
+
+{
+  "name": "Community A"
+}
+
+###
+DELETE http://localhost:8080/communities/2
+Content-Type: application/json
+
+
+

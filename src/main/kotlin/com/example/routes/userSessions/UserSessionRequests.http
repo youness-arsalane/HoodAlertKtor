@@ -1,0 +1,33 @@
+// HTTP Requests for RenalRoutes.kt
+###
+GET http://localhost:8080/userSessions
+Content-Type: application/json
+
+###
+GET http://localhost:8080/userSessions/1
+Content-Type: application/json
+
+###
+POST http://localhost:8080/userSessions
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "token": "TOKEN"
+}
+
+###
+PUT http://localhost:8080/userSessions/1
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "token": "TOKEN"
+}
+
+###
+DELETE http://localhost:8080/userSessions/2
+Content-Type: application/json
+
+
+
