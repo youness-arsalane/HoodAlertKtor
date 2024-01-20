@@ -1,6 +1,5 @@
 package com.example.db.dao
 
-import com.example.db.tables.CommunitiesTable
 import com.example.db.tables.CommunityUsersTable
 import com.example.dto.communityUsers.CommunityUserDTO
 import org.jetbrains.exposed.dao.IntEntity
@@ -13,8 +12,8 @@ class CommunityUserEntity(id: EntityID<Int>) : IntEntity(id) {
     var communityId by CommunityUsersTable.communityId
     var userId by CommunityUsersTable.userId
     var isAdmin by CommunityUsersTable.isAdmin
-    var createdAt by CommunitiesTable.createdAt
-    var updatedAt by CommunitiesTable.updatedAt
+    var createdAt by CommunityUsersTable.createdAt
+    var updatedAt by CommunityUsersTable.updatedAt
 }
 
 fun CommunityUserEntity.toCommunityUserDTO() = CommunityUserDTO(

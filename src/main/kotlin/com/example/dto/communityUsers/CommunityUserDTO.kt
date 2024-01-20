@@ -1,6 +1,9 @@
 package com.example.dto.communityUsers
 
+import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
 
 typealias CommunityUserId = Int
@@ -11,6 +14,6 @@ data class CommunityUserDTO(
     val communityId: Int,
     val userId: Int,
     val isAdmin: Boolean,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val createdAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()),
+    val updatedAt: LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 )

@@ -7,6 +7,9 @@ import com.example.dto.communityUsers.CreateCommunityUserDTO
 import com.example.dto.communityUsers.UpdateCommunityUserDTO
 import com.example.dto.communityUsers.CommunityUserDTO
 import com.example.dto.communityUsers.CommunityUserId
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class CommunityUsersRepositoryImpl : CommunityUsersRepository {
 
@@ -25,8 +28,8 @@ class CommunityUsersRepositoryImpl : CommunityUsersRepository {
             communityId = communityUser.communityId
             userId = communityUser.userId
             isAdmin = communityUser.isAdmin
-            createdAt = communityUser.createdAt
-            updatedAt = communityUser.updatedAt
+            createdAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+            updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         }.toCommunityUserDTO()
     }
 
@@ -35,8 +38,7 @@ class CommunityUsersRepositoryImpl : CommunityUsersRepository {
             it.communityId = communityUser.communityId
             it.userId = communityUser.userId
             it.isAdmin = communityUser.isAdmin
-            it.createdAt = communityUser.createdAt
-            it.updatedAt = communityUser.updatedAt
+            it.updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         } ?: throw Exception("CommunityUser not found")
     }
 

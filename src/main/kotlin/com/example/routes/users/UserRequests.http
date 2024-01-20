@@ -23,14 +23,14 @@ PUT http://localhost:8080/users/1
 Content-Type: application/json
 
 {
-  "email": "user1@company.com",
-  "firstName": "Current1",
-  "lastName": "User1",
+  "email": "user@company.com",
+  "firstName": "Current5",
+  "lastName": "User",
   "password": "P@ssword!1"
 }
 
 ###
-DELETE http://localhost:8080/users/2
+DELETE http://localhost:8080/users/1
 Content-Type: application/json
 
 

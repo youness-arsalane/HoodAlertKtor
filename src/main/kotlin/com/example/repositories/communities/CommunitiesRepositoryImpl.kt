@@ -7,6 +7,9 @@ import com.example.dto.communities.CreateCommunityDTO
 import com.example.dto.communities.UpdateCommunityDTO
 import com.example.dto.communities.CommunityDTO
 import com.example.dto.communities.CommunityId
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class CommunitiesRepositoryImpl : CommunitiesRepository {
 
@@ -23,16 +26,15 @@ class CommunitiesRepositoryImpl : CommunitiesRepository {
     override suspend fun createCommunity(community: CreateCommunityDTO): CommunityDTO = dbQuery {
         CommunityEntity.new {
             name = community.name
-            createdAt = community.createdAt
-            updatedAt = community.updatedAt
+            createdAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+            updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         }.toCommunityDTO()
     }
 
     override suspend fun updateCommunity(communityId: CommunityId, community: UpdateCommunityDTO) = dbQuery {
         CommunityEntity.findById(communityId)?.let {
             it.name = community.name
-            it.createdAt = community.createdAt
-            it.updatedAt = community.updatedAt
+            it.updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         } ?: throw Exception("Community not found")
     }
 

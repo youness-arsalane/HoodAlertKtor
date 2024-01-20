@@ -2,6 +2,9 @@ package com.example.dto.incidents
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 @Serializable
 data class CreateIncidentDTO(
@@ -15,7 +18,5 @@ data class CreateIncidentDTO(
     val city: String,
     val country: String,
     val latitude: Double?,
-    val longitude: Double?,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime
+    val longitude: Double?
 )

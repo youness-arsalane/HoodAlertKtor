@@ -7,6 +7,9 @@ import com.example.dto.userSessions.CreateUserSessionDTO
 import com.example.dto.userSessions.UpdateUserSessionDTO
 import com.example.dto.userSessions.UserSessionDTO
 import com.example.dto.userSessions.UserSessionId
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class UserSessionsRepositoryImpl : UserSessionsRepository {
 
@@ -24,8 +27,8 @@ class UserSessionsRepositoryImpl : UserSessionsRepository {
         UserSessionEntity.new {
             userId = userSession.userId
             token = userSession.token
-            createdAt = userSession.createdAt
-            updatedAt = userSession.updatedAt
+            createdAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+            updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         }.toUserSessionDTO()
     }
 
@@ -33,8 +36,7 @@ class UserSessionsRepositoryImpl : UserSessionsRepository {
         UserSessionEntity.findById(userSessionId)?.let {
             it.userId = userSession.userId
             it.token = userSession.token
-            it.createdAt = userSession.createdAt
-            it.updatedAt = userSession.updatedAt
+            it.updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         } ?: throw Exception("UserSession not found")
     }
 

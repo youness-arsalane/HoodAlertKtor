@@ -1,6 +1,5 @@
 package com.example.db.dao
 
-import com.example.db.tables.CommunitiesTable
 import com.example.db.tables.UserSessionsTable
 import com.example.dto.userSessions.UserSessionDTO
 import org.jetbrains.exposed.dao.IntEntity
@@ -12,8 +11,8 @@ class UserSessionEntity(id: EntityID<Int>) : IntEntity(id) {
 
     var userId by UserSessionsTable.userId
     var token by UserSessionsTable.token
-    var createdAt by CommunitiesTable.createdAt
-    var updatedAt by CommunitiesTable.updatedAt
+    var createdAt by UserSessionsTable.createdAt
+    var updatedAt by UserSessionsTable.updatedAt
 }
 
 fun UserSessionEntity.toUserSessionDTO() = UserSessionDTO(

@@ -7,6 +7,9 @@ import com.example.dto.users.CreateUserDTO
 import com.example.dto.users.UpdateUserDTO
 import com.example.dto.users.UserDTO
 import com.example.dto.users.UserId
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class UsersRepositoryImpl : UsersRepository {
 
@@ -26,8 +29,8 @@ class UsersRepositoryImpl : UsersRepository {
             firstName = user.firstName
             lastName = user.lastName
             password = user.password
-            createdAt = user.createdAt
-            updatedAt = user.updatedAt
+            createdAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+            updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         }.toUserDTO()
     }
 
@@ -37,8 +40,7 @@ class UsersRepositoryImpl : UsersRepository {
             it.firstName = user.firstName
             it.lastName = user.lastName
             it.password = user.password
-            it.createdAt = user.createdAt
-            it.updatedAt = user.updatedAt
+            it.updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         } ?: throw Exception("User not found")
     }
 

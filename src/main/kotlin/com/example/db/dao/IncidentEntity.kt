@@ -1,6 +1,5 @@
 package com.example.db.dao
 
-import com.example.db.tables.CommunitiesTable
 import com.example.db.tables.IncidentsTable
 import com.example.dto.incidents.IncidentDTO
 import org.jetbrains.exposed.dao.IntEntity
@@ -21,8 +20,8 @@ class IncidentEntity(id: EntityID<Int>) : IntEntity(id) {
     var country by IncidentsTable.country
     var latitude by IncidentsTable.latitude
     var longitude by IncidentsTable.longitude
-    var createdAt by CommunitiesTable.createdAt
-    var updatedAt by CommunitiesTable.updatedAt
+    var createdAt by IncidentsTable.createdAt
+    var updatedAt by IncidentsTable.updatedAt
 }
 
 fun IncidentEntity.toIncidentDTO() = IncidentDTO(

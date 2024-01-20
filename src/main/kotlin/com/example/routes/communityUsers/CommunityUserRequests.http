@@ -12,9 +12,9 @@ POST http://localhost:8080/communityUsers
 Content-Type: application/json
 
 {
-  "communityId": "communityUser@company.com",
-  "userId": "Current",
-  "isAdmin": "CommunityUser"
+  "communityId": 1,
+  "userId": 1,
+  "isAdmin": true
 }
 
 ###
@@ -22,9 +22,9 @@ PUT http://localhost:8080/communityUsers/1
 Content-Type: application/json
 
 {
-  "communityId": "communityUser1@company.com",
-  "userId": "Current1",
-  "isAdmin": "CommunityUser1"
+  "communityId": 1,
+  "userId": 1,
+  "isAdmin": false
 }
 
 ###

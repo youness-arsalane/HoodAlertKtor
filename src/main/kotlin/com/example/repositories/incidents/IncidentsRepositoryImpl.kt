@@ -7,6 +7,9 @@ import com.example.dto.incidents.CreateIncidentDTO
 import com.example.dto.incidents.UpdateIncidentDTO
 import com.example.dto.incidents.IncidentDTO
 import com.example.dto.incidents.IncidentId
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 
 class IncidentsRepositoryImpl : IncidentsRepository {
 
@@ -33,8 +36,8 @@ class IncidentsRepositoryImpl : IncidentsRepository {
             country = incident.country
             latitude = incident.latitude
             longitude = incident.longitude
-            createdAt = incident.createdAt
-            updatedAt = incident.updatedAt
+            createdAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+            updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         }.toIncidentDTO()
     }
 
@@ -51,8 +54,7 @@ class IncidentsRepositoryImpl : IncidentsRepository {
             it.country = incident.country
             it.latitude = incident.latitude
             it.longitude = incident.longitude
-            it.createdAt = incident.createdAt
-            it.updatedAt = incident.updatedAt
+            it.updatedAt = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
         } ?: throw Exception("Incident not found")
     }
 
