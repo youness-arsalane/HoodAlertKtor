@@ -3,6 +3,7 @@ package com.example.repositories.communityUsers
 import com.example.db.DatabaseFactory.dbQuery
 import com.example.db.dao.CommunityUserEntity
 import com.example.db.dao.toCommunityUserDTO
+import com.example.db.tables.CommunityUsersTable
 import com.example.dto.communityUsers.CreateCommunityUserDTO
 import com.example.dto.communityUsers.UpdateCommunityUserDTO
 import com.example.dto.communityUsers.CommunityUserDTO
@@ -10,6 +11,7 @@ import com.example.dto.communityUsers.CommunityUserId
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.exposed.sql.select
 
 class CommunityUsersRepositoryImpl : CommunityUsersRepository {
 
@@ -21,6 +23,13 @@ class CommunityUsersRepositoryImpl : CommunityUsersRepository {
 
     override suspend fun getCommunityUserById(communityUserId: CommunityUserId): CommunityUserDTO = dbQuery {
         CommunityUserEntity.findById(communityUserId)?.toCommunityUserDTO() ?: throw Exception("CommunityUser not found")
+    }
+
+    override suspend fun getCommunityUserByCommunityIdAndUserId(communityId: Int, userId: Int): CommunityUserDTO = dbQuery {
+        CommunityUserEntity.find {
+            CommunityUsersTable.communityId eq communityId
+            CommunityUsersTable.userId eq userId
+        }.firstOrNull()?.toCommunityUserDTO() ?: throw Exception("CommunityUser not found")
     }
 
     override suspend fun createCommunityUser(communityUser: CreateCommunityUserDTO): CommunityUserDTO = dbQuery {

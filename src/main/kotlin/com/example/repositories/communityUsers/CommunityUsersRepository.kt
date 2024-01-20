@@ -8,6 +8,7 @@ import com.example.dto.communityUsers.CommunityUserId
 interface CommunityUsersRepository {
     suspend fun allCommunityUsers(): List<CommunityUserDTO>
     suspend fun getCommunityUserById(communityUserId: CommunityUserId): CommunityUserDTO
+    suspend fun getCommunityUserByCommunityIdAndUserId(communityId: Int, userId: Int): CommunityUserDTO
     suspend fun createCommunityUser(communityUser: CreateCommunityUserDTO): CommunityUserDTO
     suspend fun updateCommunityUser(communityUserId: CommunityUserId, communityUser: UpdateCommunityUserDTO)
     suspend fun deleteCommunityUser(communityUserId: CommunityUserId)

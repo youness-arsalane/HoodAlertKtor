@@ -26,6 +26,12 @@ fun Route.userSessionRoutes() {
             userSession.let { call.respond(it) }
         }
 
+        get("/byToken/{token}") {
+            val token = call.parameters["token"] ?: throw Exception("Wrong format")
+            val userSession = userSessionsRepository.getUserSessionByToken(token)
+            userSession.let { call.respond(it) }
+        }
+
         post {
             val createUserSessionDTO = call.receive<CreateUserSessionDTO>()
             val userSession = userSessionsRepository.createUserSession(createUserSessionDTO)

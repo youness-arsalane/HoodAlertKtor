@@ -8,6 +8,7 @@ import com.example.dto.userSessions.UserSessionId
 interface UserSessionsRepository {
     suspend fun allUserSessions(): List<UserSessionDTO>
     suspend fun getUserSessionById(userSessionId: UserSessionId): UserSessionDTO
+    suspend fun getUserSessionByToken(token: String): UserSessionDTO
     suspend fun createUserSession(userSession: CreateUserSessionDTO): UserSessionDTO
     suspend fun updateUserSession(userSessionId: UserSessionId, userSession: UpdateUserSessionDTO)
     suspend fun deleteUserSession(userSessionId: UserSessionId)

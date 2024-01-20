@@ -1,8 +1,13 @@
 package com.example.repositories.users
 
 import com.example.db.DatabaseFactory.dbQuery
+import com.example.db.dao.CommunityUserEntity
 import com.example.db.dao.UserEntity
+import com.example.db.dao.toCommunityUserDTO
 import com.example.db.dao.toUserDTO
+import com.example.db.tables.CommunityUsersTable
+import com.example.db.tables.UsersTable
+import com.example.dto.communityUsers.CommunityUserDTO
 import com.example.dto.users.CreateUserDTO
 import com.example.dto.users.UpdateUserDTO
 import com.example.dto.users.UserDTO
@@ -10,6 +15,7 @@ import com.example.dto.users.UserId
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class UsersRepositoryImpl : UsersRepository {
 
@@ -21,6 +27,12 @@ class UsersRepositoryImpl : UsersRepository {
 
     override suspend fun getUserById(userId: UserId): UserDTO = dbQuery {
         UserEntity.findById(userId)?.toUserDTO() ?: throw Exception("User not found")
+    }
+
+    override suspend fun getUserByEmail(email: String): UserDTO = dbQuery {
+        UserEntity.find {
+            UsersTable.email eq email
+        }.firstOrNull()?.toUserDTO() ?: throw Exception("User not found")
     }
 
     override suspend fun createUser(user: CreateUserDTO): UserDTO = dbQuery {

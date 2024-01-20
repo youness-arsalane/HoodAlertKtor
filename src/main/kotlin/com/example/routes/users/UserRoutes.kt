@@ -26,6 +26,12 @@ fun Route.userRoutes() {
             user.let { call.respond(it) }
         }
 
+        get("/byEmail/{email}") {
+            val email = call.parameters["email"] ?: throw Exception("Wrong format")
+            val user = usersRepository.getUserByEmail(email)
+            user.let { call.respond(it) }
+        }
+
         post {
             val createUserDTO = call.receive<CreateUserDTO>()
             val user = usersRepository.createUser(createUserDTO)

@@ -26,6 +26,13 @@ fun Route.communityUserRoutes() {
             communityUser.let { call.respond(it) }
         }
 
+        get("/byCommunityIdAndUserId/{communityId}/{userId}") {
+            val communityId = call.parameters["communityId"]?.toInt() ?: throw Exception("Wrong format")
+            val userId = call.parameters["userId"]?.toInt() ?: throw Exception("Wrong format")
+            val communityUser = communityUsersRepository.getCommunityUserByCommunityIdAndUserId(communityId, userId)
+            communityUser.let { call.respond(it) }
+        }
+
         post {
             val createCommunityUserDTO = call.receive<CreateCommunityUserDTO>()
             val communityUser = communityUsersRepository.createCommunityUser(createCommunityUserDTO)

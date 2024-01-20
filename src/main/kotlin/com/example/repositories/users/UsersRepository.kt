@@ -8,6 +8,7 @@ import com.example.dto.users.UserId
 interface UsersRepository {
     suspend fun allUsers(): List<UserDTO>
     suspend fun getUserById(userId: UserId): UserDTO
+    suspend fun getUserByEmail(email: String): UserDTO
     suspend fun createUser(user: CreateUserDTO): UserDTO
     suspend fun updateUser(userId: UserId, user: UpdateUserDTO)
     suspend fun deleteUser(userId: UserId)
